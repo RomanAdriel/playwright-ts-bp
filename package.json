@@ -1,0 +1,24 @@
+{
+  "name": "playwright-ts-bp",
+  "version": "1.0.0",
+  "description": "Playwright with Typescript Boilperplate",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanAdriel/playwright-ts-bp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RomanAdriel/playwright-ts-bp/issues"
+  },
+  "homepage": "https://github.com/RomanAdriel/playwright-ts-bp#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.1",
+    "allure-playwright": "^3.3.3"
+  }
+}
