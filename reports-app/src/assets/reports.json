@@ -1,0 +1,30 @@
+[
+  {
+    "environment": "production",
+    "reports": [
+      {
+        "reportName": "Fix Version 2"
+      },
+      {
+        "reportName": "Fix Version 3"
+      },
+      {
+        "reportName": "Fix Version 4"
+      }
+    ]
+  },
+  {
+    "environment": "stage",
+    "reports": [
+      {
+        "reportName": "Fix Version 1"
+      },
+      {
+        "reportName": "Fix Version 2"
+      },
+      {
+        "reportName": "Fix Version 3"
+      }
+    ]
+  }
+]
