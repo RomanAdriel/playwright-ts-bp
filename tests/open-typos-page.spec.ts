@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import * as allure from "allure-js-commons";
 
-test("Open Inputs Page", async ({ page }) => {
+test("Open Inputs Page", { tag: ["@regression"] }, async ({ page }) => {
   await allure.feature("Page loads");
   await allure.story("Typos Page");
   await page.goto("https://the-internet.herokuapp.com/");

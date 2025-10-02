@@ -1,0 +1,51 @@
+name: Run Tests in Stage
+on:
+  workflow_dispatch:
+    inputs:
+      fixVersion:
+        description: "Fix Version"
+        required: true
+        default: "1.0.0"
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npm run run:regression
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+      - name: Generate Allure Report
+        run: allure generate allure-results -o allure-report --clean
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.fixVersion }}
+          path: allure-report/
+          retention-days: 30
+      - name: Commit Allure Report to main branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Add new Stage Allure Report for ${{inputs.fixVersion}}"
+          branch: main
+          file_pattern: "reports-app/stage*"
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+      - name: Install Reports App Dependencies
+        run: npm ci
+        working-directory: reports-app
+      - name: Deploy Reports App
+        run: npm run deploy
+        working-directory: reports-app
