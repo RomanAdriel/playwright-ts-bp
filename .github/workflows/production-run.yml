@@ -25,14 +25,6 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Install Java
-        run: sudo apt-get install default-jre
-      - name: Get Allure
-        run: curl -o allure-2.13.8.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz
-      - name: Unzip Allure
-        run: sudo tar -zxvf allure-2.13.8.tgz -C /opt/
-      - name: Create Allure symlink
-        run: sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
       - name: Run Playwright tests
         run: npm run run:smoke
       - uses: actions/upload-artifact@v4
@@ -42,20 +34,22 @@ jobs:
           path: playwright-report/
           retention-days: 30
       - name: Generate Allure Report
-        run: allure generate allure-results -o allure-report --clean
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v4
+        uses: simple-elf/allure-report-action@master
+        if: always()
         with:
-          name: ${{ inputs.fixVersion }}
-          path: allure-report/
-          retention-days: 30
+          allure_results: allure-results
+          allure_report: allure-report
+      - name: Move Allure report to specific directory
+        run: |
+          mkdir -p reports-app/reports/production/
+          cp -r allure-report/* docs/reports/production/${{inputs.fixVersion}}
       - name: Commit Allure Report to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
         if: always()
         with:
           commit_message: "Add new Production Allure Report for ${{inputs.fixVersion}} [skip ci]"
           branch: main
-          file_pattern: "reports-app/production*"
+          file_pattern: "/reports-app/production*"
           commit_user_name: github-actions[bot]
           commit_user_email: github-actions[bot]@users.noreply.github.com
       - name: Install Reports App Dependencies
