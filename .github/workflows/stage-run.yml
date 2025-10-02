@@ -6,8 +6,12 @@ on:
         description: "Fix Version"
         required: true
         default: "1.0.0"
+
+permissions:
+  contents: write
+
 jobs:
-  test:
+  stage-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -45,14 +49,18 @@ jobs:
           retention-days: 30
       - name: Commit Allure Report to main branch
         uses: stefanzweifel/git-auto-commit-action@v5
+        if: always()
         with:
           commit_message: "Add new Stage Allure Report for ${{inputs.fixVersion}}"
           branch: main
-          file_pattern: "reports-app/stage*"
+          file_pattern: "reports-app/stage/*"
           commit_user_name: github-actions[bot]
           commit_user_email: github-actions[bot]@users.noreply.github.com
       - name: Install Reports App Dependencies
         run: npm ci
+        working-directory: reports-app
+      - name: Config Git for Reports App
+        run: git config user.name "github-actions[bot]" && git config user.email "github-actions[bot]@users.noreply.github.com"
         working-directory: reports-app
       - name: Deploy Reports App
         run: npm run deploy
