@@ -26,10 +26,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "17"
+        run: |
+          sudo apt-get install default-jre
       - name: Set up Allure
         run: |
           wget https://github.com/allure-framework/allure2/releases/download/2.35.1/allure_2.35.1-1_all.deb
