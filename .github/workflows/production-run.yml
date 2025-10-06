@@ -25,20 +25,16 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Set up Allure
+        run: |
+          sudo apt-get install default-jre
+          curl -o allure-2.13.8.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz
+          sudo tar -zxvf allure-2.13.8.tgz -C /opt/
+          sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
       - name: Run Playwright tests
         run: npm run run:smoke
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        with:
-          allure_results: allure-results
-          allure_report: allure-report
+        run: allure generate allure-results -o allure-report --clean
       - name: Commit Allure Report
         run: |
           mkdir -p reports-app/reports/production/${{inputs.fixVersion}}
