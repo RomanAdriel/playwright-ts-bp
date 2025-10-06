@@ -25,10 +25,15 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
       - name: Set up Allure
         run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install allure
+          wget https://github.com/allure-framework/allure2/releases/download/2.35.1/allure_2.35.1-1_all.deb
+          sudo dpkg -i allure_2.35.1-1_all.deb
       - name: Run Playwright tests
         run: npm run run:smoke
       - name: Generate Allure Report
