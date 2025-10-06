@@ -39,17 +39,17 @@ jobs:
         with:
           allure_results: allure-results
           allure_report: allure-report
-      - name: Move Allure report to specific directory
+      - name: Commit Allure Report
         run: |
           mkdir -p reports-app/reports/production/${{inputs.fixVersion}}
           cp -r allure-report/* reports-app/reports/production/${{inputs.fixVersion}}
-      - name: Commit Allure Report to main branch
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v5
         if: always()
         with:
           commit_message: "Add new Production Allure Report for ${{inputs.fixVersion}} [skip ci]"
           branch: main
           file_pattern: "reports-app/reports/production*"
+          add_options: "--force"
           commit_user_name: github-actions[bot]
           commit_user_email: github-actions[bot]@users.noreply.github.com
       - name: Install Reports App Dependencies

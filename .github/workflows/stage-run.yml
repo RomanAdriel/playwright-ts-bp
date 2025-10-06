@@ -54,6 +54,7 @@ jobs:
           commit_message: "Add new Stage Allure Report for ${{inputs.fixVersion}}"
           branch: main
           file_pattern: "/reports-app/stage/*"
+          add_options: "--force"
           commit_user_name: github-actions[bot]
           commit_user_email: github-actions[bot]@users.noreply.github.com
       - name: Install Reports App Dependencies
