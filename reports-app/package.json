@@ -2,7 +2,7 @@
   "name": "test-reports",
   "homepage": "https://romanadriel.github.io/playwright-ts-bp/",
   "private": false,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
