@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","536","Open Inputs Page","chromium","2025-10-07","passed","2025-10-07","","open-inputs-page.spec.ts","",""
+"","7307","Open Inputs Page","webkit","2025-10-07","passed","2025-10-07","","open-inputs-page.spec.ts","",""
+"","1420","Open Inputs Page","firefox","2025-10-07","passed","2025-10-07","","open-inputs-page.spec.ts","",""
