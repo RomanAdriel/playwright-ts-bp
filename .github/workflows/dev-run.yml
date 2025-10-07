@@ -1,11 +1,5 @@
 name: Run Tests in Dev
-on:
-  workflow_dispatch:
-    inputs:
-      fixVersion:
-        description: "Fix Version"
-        required: true
-        default: "1.0.0"
+on: workflow_dispatch
 
 jobs:
   dev-tests:
