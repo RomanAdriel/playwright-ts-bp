@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","4076","Open Inputs Page","firefox","2025-09-11","passed","2025-09-11","","open-typos-page.spec.ts","",""
+"","5694","Open Inputs Page","chromium","2025-09-11","passed","2025-09-11","","open-inputs-page.spec.ts","",""
+"","4072","Open Inputs Page","firefox","2025-09-11","passed","2025-09-11","","open-inputs-page.spec.ts","",""
+"","3404","Open Inputs Page","webkit","2025-09-11","passed","2025-09-11","","open-typos-page.spec.ts","",""
+"","3303","Open Inputs Page","webkit","2025-09-11","passed","2025-09-11","","open-inputs-page.spec.ts","",""
+"","5651","Open Inputs Page","chromium","2025-09-11","passed","2025-09-11","","open-typos-page.spec.ts","",""
