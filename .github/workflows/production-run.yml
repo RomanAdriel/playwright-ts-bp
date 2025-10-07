@@ -27,7 +27,7 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Setup Java
+      - name: Set up Java
         run: |
           sudo apt-get install default-jre
       - name: Set up Allure
@@ -41,7 +41,7 @@ jobs:
         run: allure generate allure-results -o allure-report --clean
       - name: Commit Allure Report
         run: |
-          mkdir -p "reports-app/reports/production/${{inputs.fixVersion}}"
+          mkdir -p "reports-app/public/reports/production/${{inputs.fixVersion}}"
           cp -r allure-report/* "reports-app/public/reports/production/${{inputs.fixVersion}}"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
