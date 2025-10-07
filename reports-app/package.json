@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && node scripts/generate-reports-list.cjs && vite build",
+    "build": "tsc -b && node scripts/generate-reports-list.cjs && vite build --base=/playwright-ts-bp/",
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-reports-list": "node scripts/generate-reports-list.cjs",
