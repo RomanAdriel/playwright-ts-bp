@@ -45,7 +45,7 @@ jobs:
           cp -r allure-report/* "reports-app/public/reports/production/${{inputs.fixVersion}}"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add reports-app/public/reports/production/${{inputs.fixVersion}}
+          git add "reports-app/public/reports/production/${{inputs.fixVersion}}"
           git diff --staged --quiet || git commit -m "Update Allure reports [skip ci]"
           git push origin main
       - name: Install Reports App Dependencies
